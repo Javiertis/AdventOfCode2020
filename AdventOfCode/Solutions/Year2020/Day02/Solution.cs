@@ -21,11 +21,11 @@ namespace AdventOfCode.Solutions.Year2020
             validPassCount = 0;
             foreach (var item in _input)
             {
-                string[] tmp = item.Split(new char[] { ':', '-', ' ' });
+                string[] tmp = item.Split(new char[] { ':', '-', ' ' }, StringSplitOptions.RemoveEmptyEntries);
                 min = int.Parse(tmp[0]);
                 max = int.Parse(tmp[1]);
                 letter = tmp[2];
-                pass = tmp[4];
+                pass = tmp[3];
                 letterCount = pass.Count(a => letter.Contains(a));
                 if (letterCount >= min && letterCount <= max) validPassCount++;
             }
@@ -37,11 +37,11 @@ namespace AdventOfCode.Solutions.Year2020
             validPassCount = 0;
             foreach (var item in _input)
             {
-                string[] tmp = item.Split(new char[] { ':', '-', ' ' });
+                string[] tmp = item.Split(new char[] { ':', '-', ' ' }, StringSplitOptions.RemoveEmptyEntries);
                 min = int.Parse(tmp[0]);
                 max = int.Parse(tmp[1]);
                 letter = tmp[2];
-                pass = tmp[4];
+                pass = tmp[3];
                 if (pass[min - 1].ToString() == letter ^ pass[max - 1].ToString() == letter) validPassCount++;
             }
             return validPassCount.ToString();
