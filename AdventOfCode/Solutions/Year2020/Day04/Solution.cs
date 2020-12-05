@@ -7,13 +7,6 @@ namespace AdventOfCode.Solutions.Year2020
 {
     internal class Day04 : ASolution
     {
-        /*
-
-    hgt (Height)
-    ecl (Eye Color)
-    pid (Passport ID)
-
-         */
         private List<Dictionary<string, string>> _input;
 
         public Day04() : base(04, 2020, "")

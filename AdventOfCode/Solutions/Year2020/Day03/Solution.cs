@@ -21,10 +21,10 @@ namespace AdventOfCode.Solutions.Year2020
         protected override string SolvePartTwo()
         {
             return (SlopeEncounter(1, 1)
-                * SlopeEncounter(3, 1)
-                * SlopeEncounter(5, 1)
-                * SlopeEncounter(7, 1)
-                * SlopeEncounter(1, 2)).ToString();
+                    * SlopeEncounter(3, 1)
+                    * SlopeEncounter(5, 1)
+                    * SlopeEncounter(7, 1)
+                    * SlopeEncounter(1, 2)).ToString();
         }
 
         private long SlopeEncounter(int r, int d)
@@ -32,7 +32,7 @@ namespace AdventOfCode.Solutions.Year2020
             long res = 0;
             for (int i = 0, j = 0; i < _input.Length; i += d, j += r)
             {
-                if (j >= _input[i].Length) j = j - _input[i].Length;
+                if (j >= _input[i].Length) j -= _input[i].Length;
                 if (_input[i][j] == '#') res++;
             }
             return res;
