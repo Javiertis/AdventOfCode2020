@@ -148,5 +148,8 @@ namespace AdventOfCode.Solutions
                 }
             }
         }
+
+        public static IEnumerable<T> IntersectAll<T>(this IEnumerable<IEnumerable<T>> input)
+            => input.Aggregate(input.First(), (intersector, next) => intersector.Intersect(next));
     }
 }

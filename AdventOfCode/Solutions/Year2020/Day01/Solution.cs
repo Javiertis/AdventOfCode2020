@@ -9,7 +9,7 @@ namespace AdventOfCode.Solutions.Year2020
     {
         private readonly List<int> _input;
 
-        public Day01() : base(01, 2020, "")
+        public Day01() : base(01, 2020, "Report Repair")
         {
             _input = Input.SplitByNewline().AsEnumerable().Select(int.Parse).ToList();
         }

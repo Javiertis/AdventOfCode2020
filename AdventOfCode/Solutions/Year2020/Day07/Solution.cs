@@ -12,21 +12,6 @@ namespace AdventOfCode.Solutions.Year2020
 
         public Day07() : base(07, 2020, "")
         {
-            string test = "shiny gold bags contain 2 dark red bags.\n" +
-                "dark red bags contain 2 dark orange bags.\n" +
-                "dark orange bags contain 2 dark yellow bags.\n" +
-                "dark yellow bags contain 2 dark green bags.\n" +
-                "dark green bags contain 2 dark blue bags.\n" +
-                "dark blue bags contain 2 dark violet bags.\n" +
-                "dark violet bags contain no other bags.";
-
-            string test2 = "shiny gold bags contain 3 dark red bags.\n" +
-                "dark red bags contain 2 dark orange bags.\n" +
-                "dark orange bags contain 5 dark yellow bags.\n" +
-                "dark yellow bags contain 1 dark green bags.\n" +
-                "dark green bags contain 4 dark blue bags.\n" +
-                "dark blue bags contain 7 dark violet bags.\n" +
-                "dark violet bags contain no other bags.";
             _input = Input.SplitByNewline()
                           .ToDictionary(a => a.Split("contain", StringSplitOptions.TrimEntries)[0].Replace("bags", "bag"),
                                         b => b.Split("contain", StringSplitOptions.TrimEntries)[1].Replace("bags", "bag"));
@@ -40,7 +25,7 @@ namespace AdventOfCode.Solutions.Year2020
 
         protected override string SolvePartTwo()
         {
-            return (CountBags2(colorBag, 1)).ToString();
+            return CountBags2(colorBag, 1).ToString();
         }
 
         private HashSet<string> colors = new HashSet<string>();
