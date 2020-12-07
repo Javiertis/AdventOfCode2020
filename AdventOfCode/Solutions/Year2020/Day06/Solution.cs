@@ -11,7 +11,7 @@ namespace AdventOfCode.Solutions.Year2020
 
         public Day06() : base(06, 2020, "")
         {
-            _input = ParseInput();
+            Input.ParseInputStringToList(out _input);
         }
 
         protected override string SolvePartOne()
@@ -41,32 +41,6 @@ namespace AdventOfCode.Solutions.Year2020
                 total += counter.Count(a => a == groupLines.Length);
             }
             return total.ToString();
-        }
-
-        private List<string> ParseInput()
-        {
-            List<string> groups = new List<string>();
-
-            int index = 0;
-
-            foreach (string line in Input.Split("\n", StringSplitOptions.None))
-            {
-                if (string.IsNullOrWhiteSpace(line))
-                {
-                    ++index;
-                    continue;
-                }
-                else if (groups.Count <= index)
-                {
-                    groups.Add(line);
-                }
-                else
-                {
-                    groups[index] += line + '\n';
-                }
-            }
-
-            return groups;
         }
     }
 }

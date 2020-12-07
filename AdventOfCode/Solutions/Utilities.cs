@@ -9,16 +9,14 @@ using System.Linq;
 
 namespace AdventOfCode.Solutions
 {
-
     public static class Utilities
     {
-
         public static int[] ToIntArray(this string str, string delimiter = "")
         {
-            if(delimiter == "")
+            if (delimiter == "")
             {
                 var result = new List<int>();
-                foreach(char c in str) if(int.TryParse(c.ToString(), out int n)) result.Add(n);
+                foreach (char c in str) if (int.TryParse(c.ToString(), out int n)) result.Add(n);
                 return result.ToArray();
             }
             else
@@ -29,14 +27,12 @@ namespace AdventOfCode.Solutions
                     .Select(n => Convert.ToInt32(n))
                     .ToArray();
             }
-
         }
-
 
         public static int MinOfMany(params int[] items)
         {
             var result = items[0];
-            for(int i = 1; i < items.Length; i++)
+            for (int i = 1; i < items.Length; i++)
             {
                 result = Math.Min(result, items[i]);
             }
@@ -46,7 +42,7 @@ namespace AdventOfCode.Solutions
         public static int MaxOfMany(params int[] items)
         {
             var result = items[0];
-            for(int i = 1; i < items.Length; i++)
+            for (int i = 1; i < items.Length; i++)
             {
                 result = Math.Max(result, items[i]);
             }
@@ -56,9 +52,9 @@ namespace AdventOfCode.Solutions
         // https://stackoverflow.com/a/3150821/419956 by @RonWarholic
         public static IEnumerable<T> Flatten<T>(this T[,] map)
         {
-            for(int row = 0; row < map.GetLength(0); row++)
+            for (int row = 0; row < map.GetLength(0); row++)
             {
-                for(int col = 0; col < map.GetLength(1); col++)
+                for (int col = 0; col < map.GetLength(1); col++)
                 {
                     yield return map[row, col];
                 }
@@ -97,7 +93,7 @@ namespace AdventOfCode.Solutions
 
         public static void Repeat(this Action action, int count)
         {
-            for(int i = 0; i < count; i++) action();
+            for (int i = 0; i < count; i++) action();
         }
 
         // https://github.com/tslater2006/AdventOfCode2019
@@ -108,7 +104,7 @@ namespace AdventOfCode.Solutions
 
         public static IEnumerable<IEnumerable<T>> Split<T>(this IEnumerable<T> array, int size)
         {
-            for(var i = 0; i < (float)array.Count() / size; i++)
+            for (var i = 0; i < (float)array.Count() / size; i++)
             {
                 yield return array.Skip(i * size).Take(size);
             }
@@ -129,5 +125,28 @@ namespace AdventOfCode.Solutions
         }
 
         public static (int, int) Add(this (int x, int y) a, (int x, int y) b) => (a.x + b.x, a.y + b.y);
+
+        public static void ParseInputStringToList(this string input, out List<string> groups)
+        {
+            groups = new List<string>();
+            int index = 0;
+
+            foreach (string line in input.Split("\n", StringSplitOptions.None))
+            {
+                if (string.IsNullOrWhiteSpace(line))
+                {
+                    ++index;
+                    continue;
+                }
+                else if (groups.Count <= index)
+                {
+                    groups.Add(line);
+                }
+                else
+                {
+                    groups[index] += line + '\n';
+                }
+            }
+        }
     }
 }

@@ -29,7 +29,6 @@ namespace AdventOfCode.Solutions.Year2020
         protected override string SolvePartTwo()
         {
             SortedSet<long> IDs = new SortedSet<long>();
-            long lastID = long.MinValue;
             foreach (string boardPass in _input)
             {
                 int row = BinarySpaceSearch(boardPass.Substring(0, 7), Enumerable.Range(0, 128));
