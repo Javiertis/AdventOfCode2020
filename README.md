@@ -1,3 +1,5 @@
+[TEMPLATE](https://github.com/sindrekjr/AdventOfCodeBase)
+
 # AdventOfCodeBase
 Template project for solving Advent of Code in C#, running on [.NET 5.0](https://dotnet.microsoft.com/download/dotnet/5.0).
 
