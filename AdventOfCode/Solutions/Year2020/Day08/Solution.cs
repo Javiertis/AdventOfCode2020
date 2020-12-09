@@ -11,7 +11,9 @@ namespace AdventOfCode.Solutions.Year2020
 
         public Day08() : base(08, 2020, "")
         {
-            _input = Input.SplitByNewline().Select(a => a.Split(" ")).ToArray();
+            _input = Input.SplitByNewline()
+                          .Select(a => a.Split(" "))
+                          .ToArray();
         }
 
         protected override string SolvePartOne()
@@ -21,10 +23,11 @@ namespace AdventOfCode.Solutions.Year2020
 
         protected override string SolvePartTwo()
         {
-            int accum = 0;
-            for (int changes = _input.Length - 1; changes >= 0; changes--)
+            for (int changes = 0; changes < _input.Length; changes++)
             {
-                List<string[]> modIn = Input.SplitByNewline().Select(a => a.Split(" ")).ToList();
+                string[][] modIn = Input.SplitByNewline()
+                                        .Select(a => a.Split(" "))
+                                        .ToArray();
                 if (modIn[changes][0] == "jmp")
                 {
                     modIn[changes][0] = "nop";
@@ -38,34 +41,19 @@ namespace AdventOfCode.Solutions.Year2020
                     continue;
                 }
                 var output = Boot(modIn);
-                if (output[0] == modIn.Count) return output[1].ToString();
+                if (output[0] == modIn.Length)
+                {
+                    return output[1].ToString();
+                }
             }
-            return "0";
+            return "";
         }
 
         private int[] Boot(string[][] bootseq)
         {
             HashSet<int> visitedPos = new HashSet<int>();
             int pointer = 0, accum = 0;
-            while (!visitedPos.Contains(pointer))
-            {
-                visitedPos.Add(pointer);
-                if (bootseq[pointer][0] == "jmp")
-                {
-                    pointer += Convert.ToInt32(bootseq[pointer][1]);
-                    continue;
-                }
-                if (bootseq[pointer][0] == "acc") accum += Convert.ToInt32(bootseq[pointer][1]);
-                pointer++;
-            }
-            return new[] { pointer, accum };
-        }
-
-        private int[] Boot(List<string[]> bootseq)
-        {
-            HashSet<int> visitedPos = new HashSet<int>();
-            int pointer = 0, accum = 0;
-            while (!visitedPos.Contains(pointer) && pointer < bootseq.Count)
+            while (!visitedPos.Contains(pointer) && pointer < bootseq.Length)
             {
                 visitedPos.Add(pointer);
                 if (bootseq[pointer][0] == "jmp")
